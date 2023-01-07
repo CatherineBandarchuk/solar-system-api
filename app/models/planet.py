@@ -1,13 +1,20 @@
 from app import db
 
 class Planet(db.Model):
+    
+    #__tablename__ = "planet"
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
     name = db.Column(db.String, nullable = False)
     length_of_year = db.Column(db.Integer, nullable = False)   
     description = db.Column(db.String, nullable = False)
-    moons = db.relationship("Moon", back_populates="planets")
+    moon = db.relationship("Moon", back_populates="planet")
+    # class Parent(Base):
+    # __tablename__ = "parent_table"
+    # id = Column(Integer, primary_key=True)
+    # children = relationship("Child", back_populates="parent")
 
-    def to_dict(self):
+
+    def to_dict(self): 
         planet_as_dict = {}
         planet_as_dict["id"] = self.id
         planet_as_dict["name"] = self.name

@@ -5,6 +5,7 @@ from flask import Blueprint, jsonify, abort, make_response, request
 from .planet_routes import validate_model
 
 moons_bp = Blueprint("moons_bp", __name__, url_prefix = "/moons")
+planets_bp = Blueprint("planets_bp", __name__, url_prefix = "/planets")
 
 #`/moons/<planet_id>/moons` with the POST 
 @moons_bp.route("/<planet_id>/moons", methods=["POST"])
@@ -46,7 +47,7 @@ def get_all_moons_query():
     return jsonify(moon_response), 200
 
 #/planets/<planet_id>/moons` with the GET method 
-@moons_bp.route("/<planet_id>/moons", methods=["GET"])
+@planets_bp.route("/<planet_id>/moons", methods=["GET"])
 def read_moons(planet_id):
     planet = validate_model(Planet, planet_id)
 
